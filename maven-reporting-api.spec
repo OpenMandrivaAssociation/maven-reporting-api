@@ -1,7 +1,8 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           maven-reporting-api
 Version:        3.0
-Release:        4.1%{?dist}
+Release:        4.2
+Group:	Development/Java
 # Maven-shared defines maven-reporting-api version as 3.0
 Epoch:          1
 Summary:        API to manage report generation
@@ -16,7 +17,7 @@ Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
 BuildArch:      noarch
 
 BuildRequires:  maven-local
-BuildRequires:  mvn(org.apache.maven.shared:maven-shared-components)
+BuildRequires:  mvn(org.apache.maven.shared:maven-shared-components:pom:)
 BuildRequires:  mvn(org.apache.maven.doxia:doxia-sink-api)
 
 Obsoletes:      maven-shared-reporting-api < %{epoch}:%{version}-%{release}
