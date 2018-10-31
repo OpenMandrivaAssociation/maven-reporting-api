@@ -1,7 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           maven-reporting-api
 Version:        3.0
-Release:        4.2
+Release:        4.3
 Group:	Development/Java
 # Maven-shared defines maven-reporting-api version as 3.0
 Epoch:          1
