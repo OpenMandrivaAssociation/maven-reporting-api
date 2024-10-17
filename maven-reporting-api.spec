@@ -7,7 +7,7 @@ Group:	Development/Java
 Epoch:          1
 Summary:        API to manage report generation
 License:        ASL 2.0
-URL:            http://maven.apache.org/shared/maven-reporting-api
+URL:            https://maven.apache.org/shared/maven-reporting-api
 # svn export http://svn.apache.org/repos/asf/maven/shared/tags/maven-reporting-api-3.0 maven-reporting-api-3.0
 # tar caf maven-reporting-api-3.0.tar.xz maven-reporting-api-3.0/
 Source0:        %{name}-%{version}.tar.xz
