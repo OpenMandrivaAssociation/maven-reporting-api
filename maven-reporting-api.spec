@@ -1,73 +1,31 @@
-%{?_javapackages_macros:%_javapackages_macros}
-Name:           maven-reporting-api
-Version:        3.0
-Release:        4.3
-Group:	Development/Java
-# Maven-shared defines maven-reporting-api version as 3.0
-Epoch:          1
-Summary:        API to manage report generation
-License:        ASL 2.0
-URL:            https://maven.apache.org/shared/maven-reporting-api
-# svn export http://svn.apache.org/repos/asf/maven/shared/tags/maven-reporting-api-3.0 maven-reporting-api-3.0
-# tar caf maven-reporting-api-3.0.tar.xz maven-reporting-api-3.0/
-Source0:        %{name}-%{version}.tar.xz
-# ASL mandates that the licence file be included in redistributed source
-Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
+Name:		maven-reporting-api
+Version:	4.0.0
+Release:	1
+Epoch:		1
+Summary:	Maven reporting API
+Group:		Development/Java
+License:	ASL 2.0
+URL:		https://maven.apache.org/shared/maven-reporting-api/
+Source0:	https://github.com/apache/maven-reporting-api/archive/refs/tags/maven-reporting-api-%{version}.tar.gz
+BuildArch:	noarch
+# Literal, so the first rpmbuild -bs records them before sysjar is installed.
+BuildRequires:	maven
+BuildRequires:	java-current-devel
+BuildRequires:	maven-shared
+BuildRequires:	doxia-sink-api
+BuildSystem:	maven
+BuildOption(install):	--file-name %{name}
 
-BuildArch:      noarch
-
-BuildRequires:  maven-local
-BuildRequires:  mvn(org.apache.maven.shared:maven-shared-components:pom:)
-BuildRequires:  mvn(org.apache.maven.doxia:doxia-sink-api)
-
-Obsoletes:      maven-shared-reporting-api < %{epoch}:%{version}-%{release}
-Provides:       maven-shared-reporting-api = %{epoch}:%{version}-%{release}
+# The previous package was 1:3.0. Epoch stays 1 so 4.0.0 replaces it.
+Obsoletes:	maven-shared-reporting-api < %{EVR}
+Provides:	maven-shared-reporting-api = %{EVR}
 
 %description
-API to manage report generation. Maven-reporting-api is included in Maven 2.x
-core distribution, but moved to shared components to achieve report decoupling
-from Maven 3 core.
-
-This is a replacement package for maven-shared-reporting-api
-
-%package javadoc
-Summary:        Javadoc for %{name}
-    
-%description javadoc
-API documentation for %{name}.
-
+API for Maven report generation. The only compile dependency is the
+Doxia sink API.
 
 %prep
-%setup -q
-cp %{SOURCE1} LICENSE.txt
-
-%build
-# Previous package provides groupIds org.apache.maven.shared and org.apache.maven.reporting
-%mvn_alias : org.apache.maven.shared:maven-reporting-api
-%mvn_build
-
-%install
-%mvn_install
+%autosetup -n maven-reporting-api-maven-reporting-api-%{version}
 
 %files -f .mfiles
-%doc LICENSE.txt
-
-%files javadoc -f .mfiles-javadoc
-%doc LICENSE.txt
-
-
-%changelog
-* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:3.0-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
-
-* Mon Feb 18 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:3.0-3
-- Build with xmvn
-- Resolves: rhbz#912437
-
-* Wed Feb 06 2013 Java SIG <java-devel@lists.fedoraproject.org> - 1:3.0-2
-- Update for https://fedoraproject.org/wiki/Fedora_19_Maven_Rebuild
-- Replace maven BuildRequires with maven-local
-
-* Thu Jan 17 2013 Tomas Radej <tradej@redhat.com> - 1:3.0-1
-- Initial version
-
+%doc README.md
