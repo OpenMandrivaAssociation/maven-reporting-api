@@ -1,2 +1,4 @@
 sources:
+  maven-reporting-api-4.1.0.tar.gz: 31b01ccb4dd46501f68144dfda9768e3681370da
+removed_sources:
   maven-reporting-api-4.0.0.tar.gz: aaf5b0db2089ce926be0a09bbae0da6ad3dc9409
